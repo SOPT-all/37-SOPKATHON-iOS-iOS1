@@ -1,5 +1,11 @@
 //
-//  OnboardingStep1VC.swift
+//  OnboardingStep3VC.swift
+//  37-SOPKATHON-iOS-iOS1
+//
+//  Created by 이서현 on 11/23/25.
+//
+//
+//  OnboardingStep2VC.swift
 //  37-SOPKATHON-iOS-iOS1
 //
 //  Created by 이서현 on 11/23/25.
@@ -10,10 +16,9 @@ import UIKit
 import SnapKit
 import Then
 
-final class OnboardingStep1VC: UIViewController {
+final class OnboardingStep3VC: UIViewController {
 
-  //private let navBar = NavigationBar()
-  private let onboardingView = OnboardingImageView(page: .first)
+  private let onboardingView = OnboardingImageView(page: .third)
   private let stackView = UIStackView()
 
   override func viewDidLoad() {
@@ -32,7 +37,7 @@ final class OnboardingStep1VC: UIViewController {
       $0.distribution = .equalSpacing
     }
 
-    view.addSubviews(onboardingView,stackView)
+    view.addSubviews(onboardingView, stackView)
   }
 
   private func setupLayout() {
@@ -40,7 +45,7 @@ final class OnboardingStep1VC: UIViewController {
     onboardingView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalToSuperview()
-      $0.height.equalTo(530)
+      $0.height.equalTo(500)
     }
 
     stackView.snp.makeConstraints {
@@ -52,10 +57,10 @@ final class OnboardingStep1VC: UIViewController {
 
   private func addButtons() {
     let titles = [
-      "“…”\n조용히 지나가 준비하고 바로 외출한다",
-      "“굿모닝~”\n자연스러운 아침인사만 나눈다",
-      "“잘 잤어? 나도 커피 한 잔 해야겠다”\n반갑게 같이 커피를 마시며 이야기를 나눈다",
-      "“Zzz”\n너무 일찍 일어났다. 다시 자리 들어간다"
+      "“좋지! 나도 같이 놀래!”\n재밌을 것 같아 기대된다",
+      "“응 미리 말해주면 괜찮아!”\n말만 해주면 부담 없다",
+      "“오늘은 조용히 있고 싶은 한데…”\n주저한다",
+      "“집에서는 혼자만의 시간이 중요해.”\n주거공간에 외부인이 방문하는 게 싫다"
     ]
 
     titles.forEach { text in
@@ -63,7 +68,7 @@ final class OnboardingStep1VC: UIViewController {
       stackView.addArrangedSubview(button)
 
       button.tapAction = { [weak self] in
-          let vc = OnboardingStep2VC()
+          let vc = ResultViewController()
           self?.navigationController?.pushViewController(vc, animated: true)
       }
     }

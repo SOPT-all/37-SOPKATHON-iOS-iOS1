@@ -1,10 +1,4 @@
 //
-//  OnboardingStep3VC.swift
-//  37-SOPKATHON-iOS-iOS1
-//
-//  Created by 이서현 on 11/23/25.
-//
-//
 //  OnboardingStep2VC.swift
 //  37-SOPKATHON-iOS-iOS1
 //
@@ -16,9 +10,9 @@ import UIKit
 import SnapKit
 import Then
 
-final class OnboardingStep3VC: UIViewController {
+final class OnboardingStep2VC: UIViewController {
 
-  private let onboardingView = OnboardingImageView(page: .third)
+  private let onboardingView = OnboardingImageView(page: .second)
   private let stackView = UIStackView()
 
   override func viewDidLoad() {
@@ -41,11 +35,10 @@ final class OnboardingStep3VC: UIViewController {
   }
 
   private func setupLayout() {
-
     onboardingView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalToSuperview()
-      $0.height.equalTo(530)
+      $0.height.equalTo(500)
     }
 
     stackView.snp.makeConstraints {
@@ -57,18 +50,19 @@ final class OnboardingStep3VC: UIViewController {
 
   private func addButtons() {
     let titles = [
-      "“좋지! 나도 같이 놀래!”\n재밌을 것 같아 기대된다",
-      "“응 미리 말해주면 괜찮아!”\n말만 해주면 부담 없다",
-      "“오늘은 조용히 있고 싶은 한데…”\n주저한다",
-      "“집에서는 혼자만의 시간이 중요해.”\n주거공간에 외부인이 방문하는 게 싫다"
+      "“알아서 치우겠지~”\n신경 쓰지 않고 내 할 일 한다",
+      "“아.. 내가 치워야겠다”\n내가 바로 치운다. 깔끔하게 정돈한다",
+      "“앞으로 먹은 건 바로 치워줬으면 좋겠어”\n가볍게 이야기해서 정리 루틴을 맞춘다",
+      "“이건 너무하지!!”\n공용 공간은 깔끔해야 한다고 생각해 화가난다"
     ]
 
     titles.forEach { text in
       let button = SimulationButton(title: text)
       stackView.addArrangedSubview(button)
 
-      button.tapAction = {
-        print("Tapped: \(text)")
+      button.tapAction = { [weak self] in
+          let vc = OnboardingStep3VC()
+          self?.navigationController?.pushViewController(vc, animated: true)
       }
     }
   }
