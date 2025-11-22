@@ -97,19 +97,19 @@ final class WriteReviewView: BaseUIView {
             $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(12)
             $0.height.equalTo(26)
         }
-        
 
         roomInfoView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
-        }
-        roomMateInfoView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(43)
-            $0.leading.trailing.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
         
-        makeXButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(30)
+        roomMateInfoView.snp.makeConstraints {
+            $0.top.equalTo(roomInfoView.snp.bottom).offset(43)
+            $0.leading.trailing.equalToSuperview()
         }
     }
+}
+
+#Preview {
+    WriteReviewViewController()
 }

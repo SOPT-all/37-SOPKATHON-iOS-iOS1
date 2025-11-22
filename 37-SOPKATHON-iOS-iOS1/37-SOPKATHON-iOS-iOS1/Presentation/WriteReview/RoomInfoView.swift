@@ -67,7 +67,7 @@ final class RoomInfoView: BaseUIView, UIImagePickerControllerDelegate, UINavigat
         $0.attributedPlaceholder = NSAttributedString(string: "월세를 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray700])
         $0.borderStyle = .none
         $0.layer.cornerRadius = 6
-        $0.backgroundColor = .gray100
+        $0.backgroundColor = .gray000
         $0.font = .body_regular_14
         $0.textColor = .gray700
         $0.addLeftPadding()
@@ -80,7 +80,7 @@ final class RoomInfoView: BaseUIView, UIImagePickerControllerDelegate, UINavigat
     }
     
     private let counterBackgroundView = UIView().then {
-        $0.backgroundColor = .gray100
+        $0.backgroundColor = .gray000
         $0.layer.cornerRadius = 6
     }
     
@@ -99,7 +99,7 @@ final class RoomInfoView: BaseUIView, UIImagePickerControllerDelegate, UINavigat
         $0.attributedPlaceholder = NSAttributedString(string: "기간을 입력해주세요", attributes: [NSAttributedString.Key.foregroundColor : UIColor.gray700])
         $0.borderStyle = .none
         $0.layer.cornerRadius = 6
-        $0.backgroundColor = .gray100
+        $0.backgroundColor = .gray000
         $0.font = .body_regular_14
         $0.textColor = .gray700
         $0.addLeftPadding()
