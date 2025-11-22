@@ -33,6 +33,8 @@ final class WriteReviewView: BaseUIView {
         $0.textColor = .gray800
     }
     
+    private let roomMateInfoView = RoomMateInfoView()
+    
     private lazy var makeXButton = CustomButton(type: .createXIntro)
     let roomInfoView = RoomInfoView()
     
@@ -60,7 +62,8 @@ final class WriteReviewView: BaseUIView {
         contentView.addSubviews(
             iconImageView,
             titleLabel,
-            roomInfoView
+            roomInfoView,
+            roomMateInfoView
         )
     }
     
@@ -80,6 +83,7 @@ final class WriteReviewView: BaseUIView {
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
             $0.width.equalTo(scrollView.snp.width)
+            $0.bottom.equalTo(roomMateInfoView.snp.bottom).offset(69)
         }
         
         iconImageView.snp.makeConstraints {
@@ -94,8 +98,16 @@ final class WriteReviewView: BaseUIView {
             $0.height.equalTo(26)
         }
         
+
         roomInfoView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(28)
+        }
+        roomMateInfoView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(43)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        makeXButton.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(30)
         }
