@@ -28,6 +28,8 @@ final class FRoomResultViewController: BaseUIViewController {
     }
     private let inquireButton = CustomButton(type: .xRoomInquiry)
     private let anotherButton = CustomButton(type: .anotherRoom)
+    private lazy var toast = ToastMessage(title: "")
+    private lazy var t = ChooseToastMessage()
     /// 해보장
     private let cardContainer = UIView().then {
         $0.backgroundColor = .clear
@@ -57,7 +59,6 @@ final class FRoomResultViewController: BaseUIViewController {
     
     override func setUI() {
         view.addSubviews(titleLabel, inquireButton, anotherButton, cardContainer)
-        cardContainer.addSubviews(frontCard, backCard)
         
         cardContainer.addSubview(roundedContentView)
         roundedContentView.addSubviews(frontCard, backCard)
@@ -84,18 +85,6 @@ final class FRoomResultViewController: BaseUIViewController {
             $0.centerX.equalToSuperview()
         }
         
-//        frontCard.snp.makeConstraints {
-//            $0.leading.trailing.equalToSuperview().inset(32.5)
-//            $0.top.equalToSuperview().inset(151)
-//            $0.height.equalTo(463)
-//        }
-//        
-//        backCard.snp.makeConstraints {
-//            $0.leading.trailing.equalToSuperview().inset(32.5)
-//            $0.top.equalToSuperview().inset(151)
-//            $0.height.equalTo(463)
-//        }
-        
         cardContainer.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(32.5)
             $0.top.equalToSuperview().inset(151)
@@ -109,19 +98,13 @@ final class FRoomResultViewController: BaseUIViewController {
         frontCard.snp.makeConstraints { $0.edges.equalToSuperview() }
         backCard.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
+    
+    override func setDelegate() {
+        inquireButton.delegate = self
+        anotherButton.delegate = self
+    }
 }
 extension FRoomResultViewController {
-//    func flipCard() {
-//        UIView.transition(
-//            from: frontCard,
-//            to: backCard,
-//            duration: 0.3,
-//            options: .transitionFlipFromLeft
-//        )
-//        
-//        backCard.isHidden = false
-//        frontCard.isHidden = true
-//    }
     @objc private func handleCardTap() {
         flipCard()
     }
@@ -139,5 +122,11 @@ extension FRoomResultViewController {
                 to.isHidden = false
             }
         )
+    }
+}
+
+extension FRoomResultViewController: CustomButtonDelegate {
+    func customButtonDidTap(_ button: CustomButton, type: CustomButtonType) {
+        toast.makeToast(on: self.view, message: "전화번호가 복사되었습니다")
     }
 }

@@ -16,6 +16,7 @@ extension UIFont {
     static let body_bold_18 = UIFont(name: "Pretendard-Bold", size: 18) ?? .systemFont(ofSize: 18, weight: .bold)
     static let body_bold_16 = UIFont(name: "Pretendard-Bold", size: 16) ?? .systemFont(ofSize: 16, weight: .bold)
     static let body_semibold_14 = UIFont(name: "Pretendard-SemiBold", size: 14) ?? .systemFont(ofSize: 14, weight: .semibold)
+    static let body_semibold_18 = UIFont(name: "Pretendard-SemiBold", size: 18) ?? .systemFont(ofSize: 18, weight: .semibold)
     static let body_medium_18 = UIFont(name: "Pretendard-Medium", size: 18) ?? .systemFont(ofSize: 18, weight: .medium)
     static let body_medium_16 = UIFont(name: "Pretendard-Medium", size: 16) ?? .systemFont(ofSize: 16, weight: .medium)
     static let body_regular_18 = UIFont(name: "Pretendard-Regular", size: 18) ?? .systemFont(ofSize: 18, weight: .regular)
