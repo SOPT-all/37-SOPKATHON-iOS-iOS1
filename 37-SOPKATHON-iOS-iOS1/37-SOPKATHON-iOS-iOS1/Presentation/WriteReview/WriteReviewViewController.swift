@@ -36,3 +36,7 @@ final class WriteReviewViewController: BaseUIViewController {
         }
     }
 }
+
+#Preview {
+    WriteReviewViewController()
+}

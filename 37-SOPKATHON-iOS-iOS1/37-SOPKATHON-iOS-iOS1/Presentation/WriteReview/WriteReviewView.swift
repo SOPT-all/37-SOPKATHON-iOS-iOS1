@@ -32,10 +32,11 @@ final class WriteReviewView: BaseUIView {
     private let titleLabel = UILabel().then {
         $0.font = .head_bold_22
         $0.text = "방 정보 입력하기"
-        $0.textColor = .black
+        $0.textColor = .gray800
     }
     
     private lazy var makeXButton = CustomButton(type: .createXIntro)
+    let roomInfoView = RoomInfoView()
     
     // MARK: - Init
     
@@ -55,12 +56,13 @@ final class WriteReviewView: BaseUIView {
     override func setUI() {
         backgroundColor = .white
         
-        addSubviews(scrollView,makeXButton)
+        addSubviews(scrollView, makeXButton)
         scrollView.addSubview(contentView)
         
         contentView.addSubviews(
             navigationLabel,
             titleLabel,
+            roomInfoView
         )
     }
     
@@ -82,9 +84,15 @@ final class WriteReviewView: BaseUIView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(19)
+            $0.leading.equalToSuperview()
             $0.top.equalTo(navigationLabel.snp.bottom).offset(28)
             $0.height.equalTo(26)
+        }
+        
+        roomInfoView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview().inset(30)
         }
         
         makeXButton.snp.makeConstraints {
@@ -93,4 +101,9 @@ final class WriteReviewView: BaseUIView {
             $0.bottom.equalToSuperview().inset(35)
         }
     }
+}
+
+
+#Preview {
+    WriteReviewView()
 }
