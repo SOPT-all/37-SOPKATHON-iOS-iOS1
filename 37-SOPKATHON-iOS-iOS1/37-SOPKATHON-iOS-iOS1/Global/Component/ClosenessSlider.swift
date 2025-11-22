@@ -17,7 +17,7 @@ final class ClosenessSlider: BaseUIView {
     let slider = UISlider().then {
         $0.minimumValue = 0
         $0.maximumValue = 100
-        $0.minimumTrackTintColor = .yellow
+        $0.minimumTrackTintColor = .mainColorBlue
     }
     
     // MARK: - Init
