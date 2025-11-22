@@ -45,7 +45,7 @@ final class OnboardingStep3VC: UIViewController {
     onboardingView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalToSuperview()
-      $0.height.equalTo(530)
+      $0.height.equalTo(500)
     }
 
     stackView.snp.makeConstraints {
@@ -67,8 +67,9 @@ final class OnboardingStep3VC: UIViewController {
       let button = SimulationButton(title: text)
       stackView.addArrangedSubview(button)
 
-      button.tapAction = {
-        print("Tapped: \(text)")
+      button.tapAction = { [weak self] in
+          let vc = ResultViewController()
+          self?.navigationController?.pushViewController(vc, animated: true)
       }
     }
   }

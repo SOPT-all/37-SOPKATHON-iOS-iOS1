@@ -38,7 +38,7 @@ final class OnboardingStep2VC: UIViewController {
     onboardingView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalToSuperview()
-      $0.height.equalTo(530)
+      $0.height.equalTo(500)
     }
 
     stackView.snp.makeConstraints {

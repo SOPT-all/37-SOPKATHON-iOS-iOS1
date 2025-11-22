@@ -16,6 +16,11 @@ final class OnboardingStep1VC: UIViewController {
   private let onboardingView = OnboardingImageView(page: .first)
   private let stackView = UIStackView()
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.setNavigationBarHidden(false, animated: false)
+  }
+
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .white
@@ -40,7 +45,7 @@ final class OnboardingStep1VC: UIViewController {
     onboardingView.snp.makeConstraints {
       $0.leading.trailing.equalToSuperview()
       $0.top.equalToSuperview()
-      $0.height.equalTo(530)
+      $0.height.equalTo(500)
     }
 
     stackView.snp.makeConstraints {
