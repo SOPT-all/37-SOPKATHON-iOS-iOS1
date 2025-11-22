@@ -32,7 +32,7 @@ final class WriteReviewViewController: BaseUIViewController {
     
     override func setLayout() {
         writeReviewView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
