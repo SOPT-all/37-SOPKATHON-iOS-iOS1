@@ -21,6 +21,7 @@ final class WriteReviewViewController: BaseUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        writeReviewView.roomInfoView.delegate = self
         
     }
     
@@ -34,5 +35,20 @@ final class WriteReviewViewController: BaseUIViewController {
         writeReviewView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+}
+
+extension WriteReviewViewController: RoomInfoViewDelegate {
+    
+    func roomInfoViewRequestPresent(_ viewControllerToPresent: UIViewController) {
+        present(viewControllerToPresent, animated: true)
+    }
+
+    func roomInfoViewRequestDismiss(_ viewControllerToDismiss: UIViewController) {
+        viewControllerToDismiss.dismiss(animated: true)
+    }
+
+    func roomInfoViewAddRecord() {
+        print("Record 추가 요청")
     }
 }
