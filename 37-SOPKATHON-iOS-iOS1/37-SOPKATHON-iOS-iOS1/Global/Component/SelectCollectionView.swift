@@ -10,84 +10,143 @@ import UIKit
 import SnapKit
 import Then
 
-final class SelectCollectionView: UIViewController, UICollectionViewDelegate {
+final class SelectCollectionView: UIView {
 
-    private var items: [String]
+    // MARK: - Properties
+    
+    private var items: [String] = []
+    var onSelect: ((String) -> Void)?
 
-    init(items: [String]) {
-        self.items = items
-        super.init(nibName: nil, bundle: nil)
+    // MARK: - UI Components
+
+    private lazy var collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: createLayout()
+    ).then {
+        $0.showsVerticalScrollIndicator = false
+        $0.backgroundColor = .clear
+        $0.delegate = self
+        $0.dataSource = self
+        $0.allowsMultipleSelection = false
+        $0.register(
+            SelectCell.self,
+            forCellWithReuseIdentifier: SelectCell.id
+        )
     }
 
-    required init?(coder: NSCoder) {
-        self.items = []
-        super.init(coder: coder)
-    }
+    // MARK: - Init
 
-    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout()).then {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        layout.minimumLineSpacing = 10
-
-        let totalSpacing: CGFloat = 20 + 20 + 20
-        let width = (view.bounds.width - totalSpacing) / 2
-        layout.itemSize = CGSize(width: width, height: 28)
-
-        $0.collectionViewLayout = layout
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setStyle()
         setUI()
         setLayout()
     }
 
-    private func setStyle() {
-        view.backgroundColor = .white
+    convenience init(items: [String]) {
+        self.init(frame: .zero)
+        self.items = items
     }
 
-    private func setUI() {
-        view.addSubview(collectionView)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.allowsMultipleSelection = false
-        collectionView.register(SelectCell.self,
-                                forCellWithReuseIdentifier: SelectCell.id)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
-    private func setLayout() {
+    // MARK: - Layout
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        updateItemSize()
+    }
+}
+
+// MARK: - Setup
+
+private extension SelectCollectionView {
+
+    func setStyle() {
+        backgroundColor = .white
+    }
+
+    func setUI() {
+        addSubview(collectionView)
+    }
+
+    func setLayout() {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
     }
 }
 
+// MARK: - Public
+
+extension SelectCollectionView {
+
+    func configure(items: [String]) {
+        self.items = items
+        collectionView.reloadData()
+    }
+}
+
+// MARK: - Layout Helpers
+
+private extension SelectCollectionView {
+
+    func createLayout() -> UICollectionViewFlowLayout {
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumLineSpacing = 10
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        return layout
+    }
+
+    func updateItemSize() {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+
+        let totalSpacing: CGFloat = 20 + 20 + 20
+        let width = (bounds.width - totalSpacing) / 2
+        layout.itemSize = CGSize(width: width, height: 32)
+        layout.invalidateLayout()
+    }
+}
+
+// MARK: - UICollectionViewDataSource
+
 extension SelectCollectionView: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         items.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: SelectCell.id, for: indexPath
+            withReuseIdentifier: SelectCell.id,
+            for: indexPath
         ) as! SelectCell
 
-        cell.configure(text: items[indexPath.row])
+        let model = items[indexPath.item]
+        cell.configure(text: model)
+
         let isSelected = collectionView.indexPathsForSelectedItems?.contains(indexPath) ?? false
         cell.updateSelection(isSelected: isSelected)
+
         return cell
     }
 }
 
-extension SelectCollectionView {
+// MARK: - UICollectionViewDelegate
+
+extension SelectCollectionView: UICollectionViewDelegate {
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
-            for selected in selectedIndexPaths where selected != indexPath {
-                collectionView.deselectItem(at: selected, animated: false)
-                if let previousCell = collectionView.cellForItem(at: selected) as? SelectCell {
-                    previousCell.updateSelection(isSelected: false)
+        if let selected = collectionView.indexPathsForSelectedItems {
+            for index in selected where index != indexPath {
+                collectionView.deselectItem(at: index, animated: false)
+                if let cell = collectionView.cellForItem(at: index) as? SelectCell {
+                    cell.updateSelection(isSelected: false)
                 }
             }
         }
@@ -95,6 +154,8 @@ extension SelectCollectionView {
         if let cell = collectionView.cellForItem(at: indexPath) as? SelectCell {
             cell.updateSelection(isSelected: true)
         }
+
+        onSelect?(items[indexPath.item])
     }
 
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
