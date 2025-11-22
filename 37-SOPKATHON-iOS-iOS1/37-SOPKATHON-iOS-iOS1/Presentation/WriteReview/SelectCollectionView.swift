@@ -70,6 +70,9 @@ private extension SelectCollectionView {
 
     func setUI() {
         addSubview(collectionView)
+
+        collectionView.clipsToBounds = false
+        collectionView.layer.masksToBounds = false
     }
 
     func setLayout() {
