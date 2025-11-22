@@ -37,7 +37,7 @@ extension CustomButtonType {
   var width: CGFloat {
     switch self {
     case .cardInquiry: return 272
-    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommandy, .anotherRoom: return 335
+    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom: return 335
       
     }
   }
