@@ -256,6 +256,26 @@ final class RoomInfoView: BaseUIView, UIImagePickerControllerDelegate, UINavigat
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         delegate?.roomInfoViewRequestDismiss(picker)
     }
+    
+    func getMonthlyFeeText() -> String? {
+        return monthlyFeeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    func getPeriodText() -> String? {
+        return periodTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    var roomCountValue: Int {
+        return roomCount
+    }
+
+    var restroomCountValue: Int {
+        return restroomCount
+    }
+
+    var laundryCountValue: Int {
+        return laundryCount
+    }
 }
 extension RoomInfoView: CounterViewDelegate {
     func counterViewDidUpdateValue(for item: String, value: Int) {

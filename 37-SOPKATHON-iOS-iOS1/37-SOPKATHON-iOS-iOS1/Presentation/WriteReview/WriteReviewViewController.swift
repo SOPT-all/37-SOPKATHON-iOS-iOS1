@@ -16,12 +16,15 @@ final class WriteReviewViewController: BaseUIViewController {
     // MARK: - Properties
     
     private let writeReviewView = WriteReviewView()
+    private let roomService = RoomService()
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         writeReviewView.roomInfoView.delegate = self
+        
+        writeReviewView.makeXButton.addTarget(self, action: #selector(makeXButtonTapped), for: .touchUpInside)
         
     }
     
@@ -34,6 +37,58 @@ final class WriteReviewViewController: BaseUIViewController {
     override func setLayout() {
         writeReviewView.snp.makeConstraints {
             $0.edges.equalTo(view.safeAreaLayoutGuide)
+        }
+    }
+    
+    @objc private func makeXButtonTapped() {
+        requestPostRoommateInfo()
+//        pushToFRoomSendViewController()
+        
+    }
+    
+//    private func pushToFRoomSendViewController() {
+//        let viewController =
+//        navigationController?.pushViewController(viewController, animated: true)
+//    }
+    
+    private func requestPostRoommateInfo() {
+        let roomInfoView = writeReviewView.roomInfoView
+        
+        guard let monthlyRentText = roomInfoView.getMonthlyFeeText(),
+              let monthlyRent = Int(monthlyRentText),
+              let period = roomInfoView.getPeriodText()
+        else {
+            print("🚨 RoomInfoView: 필수 입력 필드 (월세/기간) 확인 필요.")
+            return
+        }
+        
+        let body = RoomInfoDTO(
+            location: "프랑스 파리",
+            monthlyRent: monthlyRent,
+            roomCount: roomInfoView.roomCountValue,
+            bathroomCount: roomInfoView.restroomCountValue,
+            period: period,
+            intimacy: 50,
+            homeFrequency: "저녁은 집에서",
+            drinkingCapacity:"애주가에요",
+            cleanliness: "바로바로 치워요",
+            smoke: "담배 안펴요",
+            description: description,
+            washerCount: roomInfoView.laundryCountValue
+        )
+        
+        roomService.postRoommateInfo(body: body) { [weak self] result in
+            guard let self = self else { return }
+            
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let response):
+                    print("✅ 룸메이트 소개서 생성 성공! Code: \(response.code), Room ID: \(response.data?.roomId ?? -1)")
+                    
+                case .failure(let error):
+                    print("❌ 룸메이트 소개서 생성 실패: \(error.localizedDescription)")
+                }
+            }
         }
     }
 }
