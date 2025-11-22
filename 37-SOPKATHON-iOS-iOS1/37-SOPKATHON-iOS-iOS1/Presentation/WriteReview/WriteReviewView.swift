@@ -103,7 +103,3 @@ final class WriteReviewView: BaseUIView {
         }
     }
 }
-
-#Preview {
-    WriteReviewView()
-}
