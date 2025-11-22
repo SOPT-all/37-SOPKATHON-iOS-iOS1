@@ -13,11 +13,11 @@ import SnapKit
 final class FRoomFrontCardView: BaseUIView {
     
     var location: String
-    var monthMoney: Int
-    var duration: String
-    var roomNum: Int
-    var toiletNum: Int
-    var washingNum: Int
+    var monthlyRent: Int
+    var period: String
+    var roomCount: Int
+    var bathroomCount: Int
+    var washerCount: Int
     
     private let image = UIImageView().then {
         $0.image = .room
@@ -61,13 +61,13 @@ final class FRoomFrontCardView: BaseUIView {
     }
     
     private lazy var data2Label = UILabel().then {
-        $0.text = "\(monthMoney)€"
+        $0.text = "\(monthlyRent)€"
         $0.font = .body_regular_14
         $0.textColor = .gray800
     }
     
     private lazy var data3Label = UILabel().then {
-        $0.text = duration
+        $0.text = period
         $0.font = .body_regular_14
         $0.textColor = .gray800
     }
@@ -91,19 +91,19 @@ final class FRoomFrontCardView: BaseUIView {
     }
     
     private lazy var numData1Label = UILabel().then {
-        $0.text = "\(roomNum)개"
+        $0.text = "\(roomCount)개"
         $0.font = .body_regular_14
         $0.textColor = .gray800
     }
     
     private lazy var numData2Label = UILabel().then {
-        $0.text = "\(toiletNum)개"
+        $0.text = "\(bathroomCount)개"
         $0.font = .body_regular_14
         $0.textColor = .gray800
     }
     
     private lazy var numData3Label = UILabel().then {
-        $0.text = "\(washingNum)개"
+        $0.text = "\(washerCount)개"
         $0.font = .body_regular_14
         $0.textColor = .gray800
     }
@@ -116,13 +116,13 @@ final class FRoomFrontCardView: BaseUIView {
         $0.image = .divider
     }
     
-    init(location: String, monthMoney: Int, duration: String, roomNum: Int, toiletNum: Int, washingNum: Int) {
+    init(location: String, monthlyRent: Int, period: String, roomCount: Int, bathroomCount: Int, washerCount: Int) {
         self.location = location
-        self.monthMoney = monthMoney
-        self.duration = duration
-        self.roomNum = roomNum
-        self.toiletNum = toiletNum
-        self.washingNum = washingNum
+        self.monthlyRent = monthlyRent
+        self.period = period
+        self.roomCount = roomCount
+        self.bathroomCount = bathroomCount
+        self.washerCount = washerCount
         super.init(frame: .zero)
     }
     
@@ -224,5 +224,28 @@ final class FRoomFrontCardView: BaseUIView {
             $0.top.equalTo(num3Label.snp.bottom).offset(2)
             $0.centerX.equalTo(num3Label)
         }
+    }
+
+    func configure(location: String,
+                   monthlyRent: Int,
+                   period: String,
+                   roomCount: Int,
+                   bathroomCount: Int,
+                   washerCount: Int) {
+
+        self.location = location
+        self.monthlyRent = monthlyRent
+        self.period = period
+        self.roomCount = roomCount
+        self.bathroomCount = bathroomCount
+        self.washerCount = washerCount
+
+        data1Label.text = location
+        data2Label.text = "\(monthlyRent)€"
+        data3Label.text = period
+
+        numData1Label.text = "\(roomCount)개"
+        numData2Label.text = "\(bathroomCount)개"
+        numData3Label.text = "\(washerCount)개"
     }
 }
