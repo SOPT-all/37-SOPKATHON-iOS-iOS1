@@ -1,15 +1,17 @@
 # 37-SOPKATHON-iOS-iOS1
 ** 솝커톤 iOS 1팀 iOS 레포 **
 
-## PROJECT 🇫🇷
-- **서비스명** : Paris 방 Get
-- **개발기간** : 2025.11.22 21:00 - 2025.11.23 09:00
+## Project 🇫🇷 🏠
+<img src="https://github.com/user-attachments/assets/55641106-8fd9-45ce-9b37-ac34eaa0264b" width="150" alt="멜론 앱 UI 스크린샷 1">
+
+- 서비스명 : **Paris 방 Get**
+- 개발기간 : **2025.11.22 21:00 - 2025.11.23 09:00**
 
 ```
-파리에서 나와 잘 맞는 룸메이트를 성향 기반으로 찾는 쉐어하우스 매칭 서비스
+낯선 파리에서, 나와 잘 맞는 사람과 편안한 집을 찾게 해주는 쉐어하우스 매칭 서비스
 ```
 
-## iOS DEVELOPER 👩🏻‍💻🧑🏻‍💻
+## iOS Developer 👩🏻‍💻🧑🏻‍💻
 
 | <img src="https://github.com/Yeonnies.png" width="200" alt="멜론 앱 UI 스크린샷 1"> | <img src="https://github.com/sumchive.png" width="200" alt="멜론 앱 UI 스크린샷 2"> | <img src="https://github.com/Jhw9n.png" width="200" alt="멜론 앱 UI 스크린샷 3"> | <img src="https://github.com/doitexactly.png" width="200" alt="멜론 앱 UI 스크린샷 4"> |
 | :---: | :---: | :---: | :---: |
@@ -34,14 +36,14 @@ Logger	: 구조화된 로깅을 지원하여 성능 저하 없이 효율적으�
 ### 작업 태그
 |태그|사용하는 부분|
 |:-----:|:-----:|
-|[Feat]|기능 구현 시 사용합니다.|
-|[Style]|UI 구현 시 사용합니다.|
-|[Add]|사진 등 에셋이나 라이브러리 추가 시 사용합니다.|
-|[Fix]|버그나 오류 해결 시 사용합니다.|
-|[Docs]|리드미, 템플릿 등 문서 수정 및 주석 추가 시 사용합니다.|
-|[Refactor]|기존 코드를 성능 개선 등의 이유로 리팩토링했을 때 사용합니다.|
-|[Delete]|기존 코드나 파일을 삭제했을 때 사용합니다.|
-|[Setting]|프로젝트 관련 설정 변경 시 사용합니다.|
+|[feat]|기능 구현 시 사용합니다.|
+|[style]|UI 구현 시 사용합니다.|
+|[add]|사진 등 에셋이나 라이브러리 추가 시 사용합니다.|
+|[fix]|버그나 오류 해결 시 사용합니다.|
+|[docs]|리드미, 템플릿 등 문서 수정 및 주석 추가 시 사용합니다.|
+|[refactor]|기존 코드를 성능 개선 등의 이유로 리팩토링했을 때 사용합니다.|
+|[delete]|기존 코드나 파일을 삭제했을 때 사용합니다.|
+|[setting]|프로젝트 관련 설정 변경 시 사용합니다.|
 |[chore]|기타.|
 
 ### 커밋 메시지 형식
@@ -92,9 +94,7 @@ Logger	: 구조화된 로깅을 지원하여 성능 저하 없이 효율적으�
 │───────└── Domain1Service.swift
 ```
 ## 시연 영상 🎥
-|<video src="https://github.com/user-attachments/assets/7b0e6450-cc56-4600-83e1-f5849b1060c0" width="200" alt="">|
-| :---: |
-| 시연 영상 |
+
 
 ## Photos 📸
 | <img src="https://github.com/user-attachments/assets/6d9ffc7f-043c-4973-aad1-f62373475a9b" width="300" alt=""> | <img src="https://github.com/user-attachments/assets/7398dbb0-8173-476c-8f60-67039f687042" width="300" alt=""> | 
