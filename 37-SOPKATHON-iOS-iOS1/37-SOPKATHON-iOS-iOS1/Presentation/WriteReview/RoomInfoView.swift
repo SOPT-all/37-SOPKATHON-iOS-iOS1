@@ -271,7 +271,3 @@ extension RoomInfoView: CounterViewDelegate {
         }
     }
 }
-
-#Preview {
-    WriteReviewViewController()
-}

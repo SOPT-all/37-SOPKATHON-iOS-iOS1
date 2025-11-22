@@ -93,7 +93,7 @@ final class CounterView: BaseUIView {
         }
         
         itemLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(200)
+            $0.leading.equalToSuperview().inset(165)
             $0.centerY.equalToSuperview()
         }
     }
@@ -129,8 +129,4 @@ final class CounterView: BaseUIView {
         
         delegate?.counterViewDidUpdateValue(for: itemName, value: currentValue)
     }
-}
-
-#Preview {
-    WriteReviewView()
 }
