@@ -7,6 +7,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>UIDesignRequiresCompatibility</key>
+	<string>true</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Pretendard-Black.otf</string>
