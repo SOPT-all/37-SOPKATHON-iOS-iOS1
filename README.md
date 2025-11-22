@@ -2,19 +2,24 @@
 ** 솝커톤 iOS 1팀 iOS 레포 **
 
 ## PROJECT 🇫🇷
-- **서비스명** : 
+- **서비스명** : Paris 방 Get
 - **개발기간** : 2025.11.22 21:00 - 2025.11.23 09:00
+
+```
+파리에서 나와 잘 맞는 룸메이트를 성향 기반으로 찾는 쉐어하우스 매칭 서비스
+```
 
 ## iOS DEVELOPER 👩🏻‍💻🧑🏻‍💻
 
 | <img src="https://github.com/Yeonnies.png" width="200" alt="멜론 앱 UI 스크린샷 1"> | <img src="https://github.com/sumchive.png" width="200" alt="멜론 앱 UI 스크린샷 2"> | <img src="https://github.com/Jhw9n.png" width="200" alt="멜론 앱 UI 스크린샷 3"> | <img src="https://github.com/doitexactly.png" width="200" alt="멜론 앱 UI 스크린샷 4"> |
 | :---: | :---: | :---: | :---: |
 | **김나연** | **김수민** | **박정환** | **이서현** |
+| 에프룸 후기, 알림, 후기 최종 결과 | 후기 작성 | 후기 상세 | 첫화면, 온보딩, 버튼 컴포넌트 |
 
 ## Key Features 💡
-### 기능 1
-### 기능 2
-
+- 시뮬레이션을 통해 나의 성향 등록
+- 성향에 맞는 방과 룸메이트를 추천
+- 룸메이트 소개서를 통해 마음에 드는 룸메이트 선택
 
 ## Tech Stack ⚒️
 
