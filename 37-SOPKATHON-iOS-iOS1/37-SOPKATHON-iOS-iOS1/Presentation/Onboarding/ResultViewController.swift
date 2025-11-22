@@ -50,8 +50,7 @@ final class ResultViewController: BaseUIViewController {
   }
   
   @objc private func goToRecommandButtonTapped() {
-    //     let vc = OnboardingStep1VC()
-    //     navigationController?.pushViewController(vc, animated: true)
-    print("hi")
+    let vc = FRoomResultViewController()
+    navigationController?.pushViewController(vc, animated: true)
   }
 }
