@@ -12,6 +12,7 @@ import Moya
 enum FlagPlusAPI {
     /// 여기에 실제 바디를 넣어주세요
     case setFlag(body: FlagPlus)
+  case getRoommate(roomId: Int)
 }
 
 extension FlagPlusAPI: BaseTargetType {
@@ -20,6 +21,8 @@ extension FlagPlusAPI: BaseTargetType {
         switch self {
         case .setFlag:
             return "/flag/add"
+        case .getRoommate(let roomId):
+                return "/rooms/\(roomId)/roommmate"
         }
     }
 
@@ -27,6 +30,8 @@ extension FlagPlusAPI: BaseTargetType {
         switch self {
         case .setFlag:
             return .post
+        case .getRoommate:
+          return .get
         }
     }
 
@@ -34,6 +39,8 @@ extension FlagPlusAPI: BaseTargetType {
         switch self {
         case .setFlag(let body):
             return .requestJSONEncodable(body)
+        case .getRoommate:
+          return .requestPlain
         }
     }
 }

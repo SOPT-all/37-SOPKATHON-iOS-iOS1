@@ -16,3 +16,5 @@ struct FlagPlus: Codable {
     let possibleDates: [Int]
     let timeSlot: Int
 }
+
+
