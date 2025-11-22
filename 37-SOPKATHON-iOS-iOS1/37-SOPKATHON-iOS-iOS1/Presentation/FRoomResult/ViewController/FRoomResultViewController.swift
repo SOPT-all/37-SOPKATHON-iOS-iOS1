@@ -44,6 +44,11 @@ final class FRoomResultViewController: BaseUIViewController {
         $0.layer.cornerRadius = 12
         $0.layer.masksToBounds = true   // 코너 깎임 유지
     }
+    
+    private lazy var toGoView = ToGoXroomView().then {
+        $0.delegate = self
+        $0.isHidden = true
+    }
 
     
     private lazy var frontCard = FRoomFrontCardView(location: location, monthMoney: monthMoney, duration: duration, roomNum: roomNum, toiletNum: toiletNum, washingNum: washingNum).then {
@@ -58,7 +63,7 @@ final class FRoomResultViewController: BaseUIViewController {
     }
     
     override func setUI() {
-        view.addSubviews(titleLabel, inquireButton, anotherButton, cardContainer)
+        view.addSubviews(titleLabel, inquireButton, anotherButton, cardContainer, toGoView)
         
         cardContainer.addSubview(roundedContentView)
         roundedContentView.addSubviews(frontCard, backCard)
@@ -89,6 +94,11 @@ final class FRoomResultViewController: BaseUIViewController {
             $0.leading.trailing.equalToSuperview().inset(32.5)
             $0.top.equalToSuperview().inset(151)
             $0.height.equalTo(463)
+        }
+        
+        toGoView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.top.equalToSuperview().inset(52)
         }
 
         roundedContentView.snp.makeConstraints {
@@ -123,10 +133,29 @@ extension FRoomResultViewController {
             }
         )
     }
+    
+    private func showToGoView() {
+        toGoView.alpha = 0
+        toGoView.isHidden = false
+
+        UIView.animate(withDuration: 0.3) {
+            self.toGoView.alpha = 1
+        }
+    }
 }
 
 extension FRoomResultViewController: CustomButtonDelegate {
     func customButtonDidTap(_ button: CustomButton, type: CustomButtonType) {
         toast.makeToast(on: self.view, message: "전화번호가 복사되었습니다")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            self?.showToGoView()
+        }
+    }
+}
+
+extension FRoomResultViewController: ToGoXroomViewDelegate {
+    func toGoButtonTapped() {
+        let vc = WriteReviewViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
