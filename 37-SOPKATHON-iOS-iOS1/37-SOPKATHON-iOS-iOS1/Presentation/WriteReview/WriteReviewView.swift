@@ -22,22 +22,21 @@ final class WriteReviewView: BaseUIView {
     
     private let contentView = UIView()
     
-    private let navigationLabel = UILabel().then {
-        $0.font = .head_semibold_18
-        $0.text = "내가 썼던 방 후기 쓰기"
-        $0.textAlignment = .center
-        $0.textColor = .black
+    private let iconImageView = UIImageView().then {
+        $0.contentMode = .scaleAspectFit
+        $0.image = .xx
     }
     
     private let titleLabel = UILabel().then {
         $0.font = .head_bold_22
-        $0.text = "방 정보 입력하기"
-        $0.textColor = .black
+        $0.text = "방 소개서 입력하기"
+        $0.textColor = .gray800
     }
     
     private let roomMateInfoView = RoomMateInfoView()
     
     private lazy var makeXButton = CustomButton(type: .createXIntro)
+    let roomInfoView = RoomInfoView()
     
     // MARK: - Init
     
@@ -57,20 +56,28 @@ final class WriteReviewView: BaseUIView {
     override func setUI() {
         backgroundColor = .white
         
-        addSubviews(scrollView,makeXButton)
+        addSubviews(scrollView, makeXButton)
         scrollView.addSubview(contentView)
         
         contentView.addSubviews(
-            navigationLabel,
+            iconImageView,
             titleLabel,
+            roomInfoView,
             roomMateInfoView
         )
     }
     
     override func setLayout() {
         
+        makeXButton.snp.makeConstraints {
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.height.equalTo(50)
+            $0.bottom.equalToSuperview().inset(35)
+        }
+        
         scrollView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.leading.trailing.top.equalTo(safeAreaLayoutGuide)
+            $0.bottom.equalTo(makeXButton.snp.top).offset(20)
         }
         
         contentView.snp.makeConstraints {
@@ -79,27 +86,30 @@ final class WriteReviewView: BaseUIView {
             $0.bottom.equalTo(roomMateInfoView.snp.bottom).offset(69)
         }
         
-        navigationLabel.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview()
-            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(12)
-            $0.height.equalTo(22)
+        iconImageView.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(20)
+            $0.centerY.equalTo(titleLabel)
+            $0.width.height.equalTo(26)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(19)
-            $0.top.equalTo(navigationLabel.snp.bottom).offset(28)
+            $0.leading.equalTo(iconImageView.snp.trailing).offset(5)
+            $0.top.equalTo(contentView.safeAreaLayoutGuide).offset(12)
             $0.height.equalTo(26)
+        }
+
+        roomInfoView.snp.makeConstraints {
+            $0.top.equalTo(titleLabel.snp.bottom).offset(28)
+            $0.horizontalEdges.equalToSuperview().inset(20)
         }
         
         roomMateInfoView.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(43)
+            $0.top.equalTo(roomInfoView.snp.bottom).offset(43)
             $0.leading.trailing.equalToSuperview()
         }
-        
-        makeXButton.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.height.equalTo(50)
-            $0.bottom.equalToSuperview().inset(35)
-        }
     }
+}
+
+#Preview {
+    WriteReviewViewController()
 }

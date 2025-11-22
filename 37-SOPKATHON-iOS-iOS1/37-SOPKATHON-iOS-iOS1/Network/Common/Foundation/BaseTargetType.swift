@@ -14,7 +14,6 @@ protocol BaseTargetType: TargetType { }
 extension BaseTargetType{
 
     var baseURL: URL {
-        /// 실제 url로 바꿔주세요.
         return URL(string: "http://13.125.126.206")!
     }
 

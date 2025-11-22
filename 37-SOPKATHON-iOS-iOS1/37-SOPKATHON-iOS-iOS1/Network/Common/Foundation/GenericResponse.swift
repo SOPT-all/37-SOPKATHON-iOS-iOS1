@@ -8,8 +8,7 @@
 import Foundation
 
 struct GenericResponse: Codable {
-    let isSuccess: Bool
     let code: Int
     let message: String
-    let result: String
+    let data: String
 }
