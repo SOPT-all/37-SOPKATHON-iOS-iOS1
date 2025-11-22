@@ -8,36 +8,38 @@
 import UIKit
 
 enum CustomButtonType: CaseIterable {
-  case newMember
-  case existingMember
-  case cardInquiry
-  case recommendRoom
-  case createXIntro
-  case xRoomInquiry
-  case anotherRoom
-  case start
-  case myRecommand
+    case newMember
+    case existingMember
+    case cardInquiry
+    case recommendRoom
+    case createXIntro
+    case xRoomInquiry
+    case anotherRoom
+    case start
+    case myRecommand
+    case xSend
 }
 
 extension CustomButtonType {
-  var title: String {
-    switch self {
-    case .newMember: return "신규 회원"
-    case .existingMember: return "기존 회원"
-    case .cardInquiry: return "문의하기"
-    case .recommendRoom: return "비슷한 다른방도 추천"
-    case .createXIntro: return "X소개서 생성"
-    case .xRoomInquiry: return "문의하기"
-    case .anotherRoom: return "다른 방 추천받기"
-    case .start: return "시작하기"
-    case .myRecommand: return "나와 잘 맞는 방 추천받기"
+    var title: String {
+        switch self {
+        case .newMember: return "신규 회원"
+        case .existingMember: return "기존 회원"
+        case .cardInquiry: return "문의하기"
+        case .recommendRoom: return "비슷한 다른방도 추천"
+        case .createXIntro: return "X소개서 생성"
+        case .xRoomInquiry: return "문의하기"
+        case .anotherRoom: return "다른 방 추천받기"
+        case .start: return "시작하기"
+        case .myRecommand: return "나와 잘 맞는 방 추천받기"
+        case .xSend: return "X방 소개서 보내기"
+        }
     }
-  }
   
   var width: CGFloat {
     switch self {
     case .cardInquiry: return 272
-    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom: return 335
+    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom, .xSend: return 335
       
     }
   }
@@ -45,13 +47,13 @@ extension CustomButtonType {
   var height: CGFloat {
     switch self {
     case .cardInquiry: return 37
-    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom: return 50
+    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom, .xSend: return 50
     }
   }
   
   var fontColor: UIColor {
     switch self {
-    case .newMember, .createXIntro, .xRoomInquiry, .recommendRoom, .start, .myRecommand:
+    case .newMember, .createXIntro, .xRoomInquiry, .recommendRoom, .start, .myRecommand, .xSend:
       return .white
     case .existingMember:
       return .mainColorRed
@@ -70,7 +72,7 @@ extension CustomButtonType {
       return .white0
     case .recommendRoom:
       return .mainColorBlue600
-    case .xRoomInquiry:
+    case .xRoomInquiry, .xSend:
       return .mainColorBlue
     case .anotherRoom:
       return .gray000
