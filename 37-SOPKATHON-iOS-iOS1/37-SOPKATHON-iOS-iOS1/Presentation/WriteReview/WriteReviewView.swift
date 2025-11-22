@@ -33,9 +33,9 @@ final class WriteReviewView: BaseUIView {
         $0.textColor = .gray800
     }
     
-    private let roomMateInfoView = RoomMateInfoView()
+    let roomMateInfoView = RoomMateInfoView()
     
-    private lazy var makeXButton = CustomButton(type: .createXIntro)
+    lazy var makeXButton = CustomButton(type: .createXIntro)
     let roomInfoView = RoomInfoView()
     
     // MARK: - Init
