@@ -14,6 +14,7 @@ enum CustomButtonType: CaseIterable {
   case recommendRoom
   case createXIntro
   case xRoomInquiry
+  case anotherRoom
   case start
   case myRecommand
 }
@@ -27,6 +28,7 @@ extension CustomButtonType {
     case .recommendRoom: return "비슷한 다른방도 추천"
     case .createXIntro: return "X소개서 생성"
     case .xRoomInquiry: return "문의하기"
+    case .anotherRoom: return "다른 방 추천받기"
     case .start: return "시작하기"
     case .myRecommand: return "나와 잘 맞는 방 추천받기"
     }
@@ -35,7 +37,7 @@ extension CustomButtonType {
   var width: CGFloat {
     switch self {
     case .cardInquiry: return 272
-    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand: return 335
+    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom: return 335
       
     }
   }
@@ -43,7 +45,7 @@ extension CustomButtonType {
   var height: CGFloat {
     switch self {
     case .cardInquiry: return 37
-    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand: return 50
+    case .newMember, .existingMember, .recommendRoom, .createXIntro, .xRoomInquiry, .start, .myRecommand, .anotherRoom: return 50
     }
   }
   
@@ -55,6 +57,8 @@ extension CustomButtonType {
       return .mainColorRed
     case .cardInquiry:
       return .gray500
+    case .anotherRoom:
+      return .black0
     }
   }
   
@@ -63,11 +67,13 @@ extension CustomButtonType {
     case .newMember, .createXIntro, .start, .myRecommand:
       return .mainColorRed
     case .existingMember, .cardInquiry:
-      return .white
+      return .white0
     case .recommendRoom:
       return .mainColorBlue600
     case .xRoomInquiry:
       return .mainColorBlue
+    case .anotherRoom:
+      return .gray000
     }
   }
 }

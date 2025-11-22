@@ -27,11 +27,14 @@ final class SelectCell: UICollectionViewCell {
         contentView.backgroundColor = .white
         contentView.layer.cornerRadius = 4
         contentView.layer.borderWidth = 1
-        contentView.layer.borderColor = UIColor.gray200.cgColor
-        contentView.layer.shadowColor = UIColor.black.cgColor
-        contentView.layer.shadowOpacity = 0.25
-        contentView.layer.shadowOffset = CGSize(width: 0, height: 1)
-
+        contentView.layer.borderColor = UIColor.clear.cgColor
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.2
+        layer.shadowOffset = CGSize(width: 0, height: 1)
+        layer.shadowRadius = 4
+        layer.masksToBounds = false
+        clipsToBounds = false
+        
         titleLabel.snp.makeConstraints {
             $0.edges.equalToSuperview().inset(3)
         }
