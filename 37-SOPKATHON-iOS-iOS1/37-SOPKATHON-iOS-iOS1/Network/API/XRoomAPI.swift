@@ -9,31 +9,30 @@ import Foundation
 
 import Moya
 
-enum FlagPlusAPI {
-    /// 여기에 실제 바디를 넣어주세요
-    case setFlag(body: FlagPlus)
+enum XRoomAPI {
+    case roomInfo(roomId: Int)
 }
 
-extension FlagPlusAPI: BaseTargetType {
+extension XRoomAPI: BaseTargetType {
 
     var path: String {
         switch self {
-        case .setFlag:
-            return "/flag/add"
+        case .roomInfo(let roomId):
+            return "/rooms/\(roomId)"
         }
     }
 
     var method: Moya.Method {
         switch self {
-        case .setFlag:
-            return .post
+        case .roomInfo:
+            return .get
         }
     }
 
     var task: Task {
         switch self {
-        case .setFlag(let body):
-            return .requestJSONEncodable(body)
+        case .roomInfo(_):
+            return .requestPlain
         }
     }
 }

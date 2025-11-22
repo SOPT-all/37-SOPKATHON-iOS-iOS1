@@ -9,17 +9,56 @@ import UIKit
 
 import Then
 import SnapKit
+import Moya
 
 final class FRoomResultViewController: BaseUIViewController {
     
     /// 더미
     var location: String = "잘 나오니?"
-    var monthMoney: Int = 2344
-    var duration: String = "djfkdjfdkf"
-    var roomNum: Int = 2
-    var toiletNum: Int = 1
-    var washingNum: Int = 3
+    var monthlyRent: Int = 2344
+    var period: String = "djfkdjfdkf"
+    var roomCount: Int = 2
+    var bathroomCount: Int = 1
+    var washerCount: Int = 3
     var review: String = "서로 바빠서 얼굴 볼 시간은 많이 없었지만, 같이 사는 내내 정말 편했습니다. 제일 중요한 월세나 공과금 입금은 단 한 번도 늦으신 적 없고, 오히려 저보다 먼저 챙겨서 정산 내역 보내주실 정도로 꼼꼼하세요. 불필요한 간섭이나 tmi 대화 없이 딱 필요한 소통만 깔끔하게 하시는 편이라, 독립적인 성향 가지신 분들에게는 이보다더 편한 룸메이트는 없을 것 같습니다. 물건 섞일 일도 전혀 없고, 본인 관리 철저하신멋진 분이에요."
+    
+    private func fetchRoomInfo(roomId: Int) {
+        let provider = MoyaProvider<XRoomAPI>()
+
+        provider.request(.roomInfo(roomId: roomId)) { [weak self] result in
+            guard let self = self else { return }
+
+            switch result {
+            case .success(let response):
+                do {
+                    let decoded = try JSONDecoder().decode(RoomInfoResponse.self, from: response.data)
+                    self.updateUI(with: decoded.data)
+                } catch {
+                    print("Decode Error:", error)
+                }
+            case .failure(let error):
+                print("Network Error:", error)
+            }
+        }
+    }
+
+    private func updateUI(with data: RoomInfo) {
+        self.location = data.location
+        self.monthlyRent = data.monthlyRent
+        self.period = data.period
+        self.roomCount = data.roomCount
+        self.bathroomCount = data.bathroomCount
+        self.washerCount = data.washerCount
+
+        frontCard.configure(
+            location: location,
+            monthlyRent: monthlyRent,
+            period: period,
+            roomCount: roomCount,
+            bathroomCount: bathroomCount,
+            washerCount: washerCount
+        )
+    }
     
     private let titleLabel = UILabel().then {
         $0.text = "이런 New방 어때요?"
@@ -51,7 +90,7 @@ final class FRoomResultViewController: BaseUIViewController {
     }
 
     
-    private lazy var frontCard = FRoomFrontCardView(location: location, monthMoney: monthMoney, duration: duration, roomNum: roomNum, toiletNum: toiletNum, washingNum: washingNum).then {
+    private lazy var frontCard = FRoomFrontCardView(location: location, monthlyRent: monthlyRent, period: period, roomCount: roomCount, bathroomCount: bathroomCount, washerCount: washerCount).then {
         $0.layer.cornerRadius = 12
         $0.layer.masksToBounds = true
     }
@@ -60,6 +99,11 @@ final class FRoomResultViewController: BaseUIViewController {
         $0.isHidden = true
         $0.layer.cornerRadius = 12
         $0.layer.masksToBounds = true
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        fetchRoomInfo(roomId: 3)
     }
     
     override func setUI() {
