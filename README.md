@@ -94,7 +94,7 @@ Logger	: 구조화된 로깅을 지원하여 성능 저하 없이 효율적으�
 │───────└── Domain1Service.swift
 ```
 ## 시연 영상 🎥
-
+<img src="https://github.com/user-attachments/assets/ddc201c2-1e8c-49ad-b79d-2467a00cc664" width="300" alt="">
 
 ## Photos 📸
 | <img src="https://github.com/user-attachments/assets/6d9ffc7f-043c-4973-aad1-f62373475a9b" width="300" alt=""> | <img src="https://github.com/user-attachments/assets/7398dbb0-8173-476c-8f60-67039f687042" width="300" alt=""> | 
