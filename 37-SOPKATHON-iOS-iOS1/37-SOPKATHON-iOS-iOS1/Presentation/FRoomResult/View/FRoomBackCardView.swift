@@ -41,6 +41,7 @@ final class FRoomBackCardView: BaseUIView {
     
     override func setUI() {
         addSubviews(xLabel, xLabel2, reviewLabel)
+        reviewLabel.text = review
     }
     
     override func setLayout() {
@@ -60,4 +61,9 @@ final class FRoomBackCardView: BaseUIView {
             $0.top.equalTo(xLabel2.snp.bottom).offset(13)
         }
     }
+    
+    func updateReview(_ text: String) {
+        review = text
+        reviewLabel.text = text
+      }
 }
