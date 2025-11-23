@@ -17,6 +17,7 @@ final class WriteReviewViewController: BaseUIViewController {
     
     private let writeReviewView = WriteReviewView()
     private let roomService = RoomService()
+    var roomid: Int?
     
     // MARK: - Lifecycle
     
@@ -42,14 +43,14 @@ final class WriteReviewViewController: BaseUIViewController {
     
     @objc private func makeXButtonTapped() {
         requestPostRoommateInfo()
-//        pushToFRoomSendViewController()
+        pushToFRoomSendViewController()
         
     }
     
-//    private func pushToFRoomSendViewController() {
-//        let viewController =
-//        navigationController?.pushViewController(viewController, animated: true)
-//    }
+    private func pushToFRoomSendViewController() {
+        let viewController = FRoomSendViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
     
     private func requestPostRoommateInfo() {
         let roomInfoView = writeReviewView.roomInfoView
@@ -85,6 +86,7 @@ final class WriteReviewViewController: BaseUIViewController {
                 case .success(let response):
                     print("✅ 룸메이트 소개서 생성 성공! Code: \(response.code), Room ID: \(response.data?.roomId ?? -1)")
                     
+                    self.roomid = response.data?.roomId ?? -1
                 case .failure(let error):
                     print("❌ 룸메이트 소개서 생성 실패: \(error.localizedDescription)")
                 }

@@ -10,31 +10,38 @@ import Foundation
 import Moya
 
 enum XRoomAPI {
-    case roomInfo(roomId: Int)
+  case roomInfo(roomId: Int)
+  case getRoommate(roomId: Int)
 }
 
 extension XRoomAPI: BaseTargetType {
-
-    var path: String {
-        switch self {
-        case .roomInfo(let roomId):
-            return "/rooms/\(roomId)"
-        }
+  
+  var path: String {
+    switch self {
+    case .roomInfo(let roomId):
+      return "/rooms/\(roomId)"
+    case .getRoommate(let roomId):
+      return "/rooms/\(roomId)/roommmate"
     }
-
-    var method: Moya.Method {
-        switch self {
-        case .roomInfo:
-            return .get
-        }
+  }
+  
+  var method: Moya.Method {
+    switch self {
+    case .roomInfo:
+      return .get
+    case .getRoommate:
+      return .get
     }
-
-    var task: Task {
-        switch self {
-        case .roomInfo(_):
-            return .requestPlain
-        }
+  }
+  
+  var task: Task {
+    switch self {
+    case .roomInfo(_):
+      return .requestPlain
+    case .getRoommate(_):
+      return .requestPlain
     }
+  }
 }
 
 //// 실제로 사용할 때 이런식으로 사용하시면됩니다.

@@ -9,6 +9,7 @@ import UIKit
 
 import Then
 import SnapKit
+import Moya
 
 final class FRoomSendViewController: BaseUIViewController {
     
@@ -83,6 +84,32 @@ final class FRoomSendViewController: BaseUIViewController {
 
         backCard.snp.makeConstraints { $0.edges.equalToSuperview() }
     }
+    
+    func getXRoommate() {
+       let provider = MoyaProvider<XRoomAPI>()
+       provider.request(.getRoommate(roomId: 3)) { result in
+           switch result {
+           case .success(let response):
+               do {
+                   let decoded = try JSONDecoder().decode(RoommateResponse.self, from: response.data)
+                   let content = decoded.data?.content ?? "없음"
+
+                   self.review = content
+
+                   DispatchQueue.main.async {
+                       self.backCard.updateReview(content)
+                   }
+
+                   print("🥹 \(content)")
+               } catch {
+                   print("Decoding error:", error)
+               }
+
+           case .failure(let error):
+               print("실패:", error)
+           }
+       }
+   }
     
     override func setDelegate() {
         sendButton.delegate = self

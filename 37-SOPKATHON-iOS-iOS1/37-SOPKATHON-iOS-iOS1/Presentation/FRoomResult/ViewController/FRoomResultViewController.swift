@@ -60,6 +60,32 @@ final class FRoomResultViewController: BaseUIViewController {
         )
     }
     
+    func getXRoommate() {
+       let provider = MoyaProvider<XRoomAPI>()
+       provider.request(.getRoommate(roomId: 3)) { result in
+           switch result {
+           case .success(let response):
+               do {
+                   let decoded = try JSONDecoder().decode(RoommateResponse.self, from: response.data)
+                   let content = decoded.data?.content ?? "없음"
+
+                   self.review = content
+
+                   DispatchQueue.main.async {
+                       self.backCard.updateReview(content)
+                   }
+
+                   print("🥹 \(content)")
+               } catch {
+                   print("Decoding error:", error)
+               }
+
+           case .failure(let error):
+               print("실패:", error)
+           }
+       }
+   }
+    
     private let titleLabel = UILabel().then {
         $0.text = "이런 New방 어때요?"
         $0.font = .head_bold_24
@@ -159,6 +185,7 @@ final class FRoomResultViewController: BaseUIViewController {
     }
 }
 extension FRoomResultViewController {
+
     @objc private func handleCardTap() {
         flipCard()
     }
