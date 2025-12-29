@@ -13,7 +13,7 @@
 
 ## iOS Developer 👩🏻‍💻🧑🏻‍💻
 
-| <img src="https://github.com/Yeonnies.png" width="200" alt="멜론 앱 UI 스크린샷 1"> | <img src="https://github.com/sumchive.png" width="200" alt="멜론 앱 UI 스크린샷 2"> | <img src="https://github.com/Jhw9n.png" width="200" alt="멜론 앱 UI 스크린샷 3"> | <img src="https://github.com/doitexactly.png" width="200" alt="멜론 앱 UI 스크린샷 4"> |
+| <img src="https://github.com/Yeonnies.png" width="200" alt="멜론 앱 UI 스크린샷 1"> | <img src="https://github.com/gleamminn.png" width="200" alt="멜론 앱 UI 스크린샷 2"> | <img src="https://github.com/Jhw9n.png" width="200" alt="멜론 앱 UI 스크린샷 3"> | <img src="https://github.com/doitexactly.png" width="200" alt="멜론 앱 UI 스크린샷 4"> |
 | :---: | :---: | :---: | :---: |
 | **김나연** | **김수민** | **박정환** | **이서현** |
 | 에프룸 후기, 알림, 후기 최종 결과 | 후기 작성 | 후기 상세 | 첫화면, 온보딩, 버튼 컴포넌트 |
